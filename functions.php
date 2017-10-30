@@ -1,15 +1,15 @@
 <?php
 /**
- * cousateca functions and definitions
+ * laulo functions and definitions
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package cousateca
+ * @package laulo
  */
 
 add_filter( 'show_admin_bar', '__return_false' );
 
-if ( ! function_exists( 'cousateca_setup' ) ) :
+if ( ! function_exists( 'laulo_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
 	 *
@@ -17,14 +17,17 @@ if ( ! function_exists( 'cousateca_setup' ) ) :
 	 * runs before the init hook. The init hook is too late for some features, such
 	 * as indicating support for post thumbnails.
 	 */
-	function cousateca_setup() {
+	function laulo_setup() {
 
-		load_theme_textdomain( 'cousateca', get_template_directory() . '/languages' );
+		load_theme_textdomain( 'laulo', get_template_directory() . '/languages' );
 		add_theme_support( 'automatic-feed-links' );
 		add_theme_support( 'title-tag' );
 		add_theme_support( 'post-thumbnails' );
 		register_nav_menus( array(
-			'menu-1' => esc_html__( 'Primary', 'cousateca' ),
+			'menu-principal' => esc_html__( 'Menu Principal', 'laulo' ),
+		) );
+		register_nav_menus( array(
+			'menu-footer' => esc_html__( 'Menu footer', 'laulo' ),
 		) );
 		add_theme_support( 'html5', array(
 			'search-form',
@@ -33,7 +36,7 @@ if ( ! function_exists( 'cousateca_setup' ) ) :
 			'gallery',
 			'caption',
 		) );
-		add_theme_support( 'custom-background', apply_filters( 'cousateca_custom_background_args', array(
+		add_theme_support( 'custom-background', apply_filters( 'laulo_custom_background_args', array(
 			'default-color' => 'ffffff',
 			'default-image' => '',
 		) ) );
@@ -50,11 +53,10 @@ if ( ! function_exists( 'cousateca_setup' ) ) :
 		) );
 
 		// Image sizes
-		add_image_size( 'cousa-image', 540, 9999, false ); // (cropped)
-		add_image_size( 'cousa-image-list', 255, 170, true ); // (cropped)
+//		add_image_size( 'cousa-image', 540, 9999, false ); // (cropped)
 	}
 endif;
-add_action( 'after_setup_theme', 'cousateca_setup' );
+add_action( 'after_setup_theme', 'laulo_setup' );
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
@@ -63,33 +65,33 @@ add_action( 'after_setup_theme', 'cousateca_setup' );
  *
  * @global int $content_width
  */
-function cousateca_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'cousateca_content_width', 640 );
+function laulo_content_width() {
+	$GLOBALS['content_width'] = apply_filters( 'laulo_content_width', 640 );
 }
-add_action( 'after_setup_theme', 'cousateca_content_width', 0 );
+add_action( 'after_setup_theme', 'laulo_content_width', 0 );
 
 /**
  * Register widget area.
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
-function cousateca_widgets_init() {
+function laulo_widgets_init() {
 	register_sidebar( array(
-		'name'          => esc_html__( 'Sidebar', 'cousateca' ),
+		'name'          => esc_html__( 'Sidebar', 'laulo' ),
 		'id'            => 'sidebar-1',
-		'description'   => esc_html__( 'Add widgets here.', 'cousateca' ),
+		'description'   => esc_html__( 'Add widgets here.', 'laulo' ),
 		'before_widget' => '<section id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</section>',
 		'before_title'  => '<h2 class="widget-title">',
 		'after_title'   => '</h2>',
 	) );
 }
-add_action( 'widgets_init', 'cousateca_widgets_init' );
+add_action( 'widgets_init', 'laulo_widgets_init' );
 
 /**
  * Enqueue scripts and styles.
  */
-function cousateca_scripts() {
+function laulo_scripts() {
 	$template_url = get_template_directory_uri();
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -100,17 +102,14 @@ function cousateca_scripts() {
 	wp_localize_script( 'bm-custom-js', 'bm_ajax', array(
 		'ajax_url' => admin_url( 'admin-ajax.php' )
 	));
-	if(get_post_type() == 'cousa'){
-		wp_enqueue_script("bm-google-map", 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCYyuykujHNOba4Egoo-QlL4qAAyPQgdeY&callback=initMap', array(), '', false);
-	}
-	wp_enqueue_style( 'cousateca-style', get_stylesheet_uri() );
+	wp_enqueue_style( 'laulo-style', get_stylesheet_uri() );
 	wp_enqueue_style( 'bm-bootstrap',  $template_url."/css/bootstrap.min.css", array(), 	'2', 'all' );
 	wp_enqueue_style( 'material-icons',  'https://fonts.googleapis.com/icon?family=Material+Icons', array(), 	'2', 'all' );
-	wp_enqueue_style( 'google-font-rubik',  'https://fonts.googleapis.com/css?family=Rubik:300,400,500,700', array(), 	'2', 'all' );
+//	wp_enqueue_style( 'google-font-rubik',  'https://fonts.googleapis.com/css?family=Rubik:300,400,500,700', array(), 	'2', 'all' );
 	wp_enqueue_style( 'bm-custom',  $template_url."/css/custom.css", array('bm-bootstrap', 'material-icons', 'google-font-rubik'), '2', 'all' );
 
 }
-add_action( 'wp_enqueue_scripts', 'cousateca_scripts' );
+add_action( 'wp_enqueue_scripts', 'laulo_scripts' );
 
 /**
  * Disable emojis
@@ -140,13 +139,6 @@ function disable_emojicons_tinymce( $plugins ) {
   }
 }
 
-add_action( 'init', 'blockusers_init' );
-function blockusers_init() {
-	if ( is_admin() && ! current_user_can( 'administrator' ) && ! ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) {
-		wp_redirect( home_url() );
-		exit;
-	}
-}
 /**
  * Requires
  */
@@ -154,7 +146,6 @@ require get_template_directory() . '/inc-functions/custom-structure.php';
 require get_template_directory() . '/inc-functions/custom-cmb2.php';
 require get_template_directory() . '/inc-functions/shortcodes.php';
 require get_template_directory() . '/inc-functions/ajax.php';
-require get_template_directory() . '/inc-functions/login.php';
 
 /**
  * Custom template tags for this theme.

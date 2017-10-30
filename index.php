@@ -15,19 +15,13 @@
 get_header(); ?>
 <div class="container">
 	<div class="row justify-content-center">
-		<div class="col-md-7">
+		<div class="col-md-12">
 <?php
 if ( have_posts() ) :
 
 	/* Start the Loop */
 	while ( have_posts() ) : the_post();
-
-	get_template_part('inc-templates/header', 'normal');
 	?>
-
-	<header id="header">
-		<h1><?php the_title(); ?></h1>
-	</header>
 	<?php
 		/*
 		 * Include the Post-Format-specific template for the content.

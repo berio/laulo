@@ -1,4 +1,5 @@
 <?php
+/*
 add_action( 'init', 'bm_rexistra_post_types' );
 function bm_rexistra_post_types(){
 
@@ -28,22 +29,5 @@ function bm_rexistra_post_types(){
 		"query_var" => true
 	);
 	register_taxonomy("uso", array("cousa"), $usos_args);
-
-	// Tipos taxonomy
-	$tipos_args = array(
-		"hierarchical" => true,
-		"label" => "Tipos",
-		"singular_label" => "Tipo",
-		"query_var" => true
-	);
-	register_taxonomy("tipo", array("cousa"), $tipos_args);
-
-	// Tipos taxonomy
-	$estado_args = array(
-		"hierarchical" => true,
-		"label" => "Estados",
-		"singular_label" => "Estado",
-		"query_var" => true
-	);
-	register_taxonomy("estado", array("cousa"), $estado_args);
 }
+*/
