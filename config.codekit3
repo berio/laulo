@@ -9,11 +9,11 @@
 	],
 "creatorBuild": "26667",
 "files": {
-	"\/.gitignore": {
+	"\/.gitattributes": {
 		"cB": 0,
 		"ft": 8192,
 		"oA": 0,
-		"oAP": "\/.gitignore",
+		"oAP": "\/.gitattributes",
 		"oF": 0
 		},
 	"\/404.php": {
