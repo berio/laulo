@@ -161,6 +161,7 @@ function add_slug_to_body_class($classes)
 }
 
 // If Dynamic Sidebar Exists
+/*
 if (function_exists('register_sidebar'))
 {
     // Define Sidebar Widget Area 1
@@ -173,18 +174,8 @@ if (function_exists('register_sidebar'))
         'before_title' => '<h3>',
         'after_title' => '</h3>'
     ));
-
-    // Define Sidebar Widget Area 2
-    register_sidebar(array(
-        'name' => __('Widget Area 2', 'laulo'),
-        'description' => __('Description for this widget-area...', 'laulo'),
-        'id' => 'widget-area-2',
-        'before_widget' => '<div id="%1$s" class="%2$s">',
-        'after_widget' => '</div>',
-        'before_title' => '<h3>',
-        'after_title' => '</h3>'
-    ));
 }
+*/
 
 // Remove wp_head() injected Recent Comment styles
 function my_remove_recent_comments_style()
@@ -438,5 +429,8 @@ function html5_shortcode_demo_2($atts, $content = null) // Demo Heading H2 short
 {
     return '<h2>' . $content . '</h2>';
 }
+
+// Disable admin bar
+show_admin_bar(false);
 
 ?>
