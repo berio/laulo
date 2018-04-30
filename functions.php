@@ -233,7 +233,7 @@ function html5wp_excerpt($length_callback = '', $more_callback = '')
 function html5_blank_view_article($more)
 {
     global $post;
-    return '... <a class="view-article" href="' . get_permalink($post->ID) . '">' . __('View Article', 'laulo') . '</a>';
+    return '...';
 }
 
 // Remove Admin bar
@@ -356,7 +356,7 @@ add_filter('wp_nav_menu_args', 'my_wp_nav_menu_args'); // Remove surrounding <di
 add_filter('the_category', 'remove_category_rel_from_category_list'); // Remove invalid rel attribute
 add_filter('the_excerpt', 'shortcode_unautop'); // Remove auto <p> tags in Excerpt (Manual Excerpts only)
 add_filter('the_excerpt', 'do_shortcode'); // Allows Shortcodes to be executed in Excerpt (Manual Excerpts only)
-add_filter('excerpt_more', 'html5_blank_view_article'); // Add 'View Article' button instead of [...] for Excerpts
+// add_filter('excerpt_more', 'html5_blank_view_article'); // Add 'View Article' button instead of [...] for Excerpts
 add_filter('show_admin_bar', 'remove_admin_bar'); // Remove Admin bar
 add_filter('style_loader_tag', 'html5_style_remove'); // Remove 'text/css' from enqueued stylesheet
 add_filter('post_thumbnail_html', 'remove_thumbnail_dimensions', 10); // Remove width and height dynamic attributes to thumbnails
@@ -376,43 +376,105 @@ add_shortcode('html5_shortcode_demo_2', 'html5_shortcode_demo_2'); // Place [htm
 	Custom Post Types
 \*------------------------------------*/
 
-// Create 1 Custom Post type for a Demo, called HTML5-Blank
-function create_post_type_html5()
+/**
+ * Post types
+ */
+
+// Etiquetas post type
+function getEtiquetasPostType($singular, $plural)
 {
-    register_taxonomy_for_object_type('category', 'html5-blank'); // Register Taxonomies for Category
-    register_taxonomy_for_object_type('post_tag', 'html5-blank');
-    register_post_type('html5-blank', // Register Custom Post Type
-        array(
-        'labels' => array(
-            'name' => __('HTML5 Blank Custom Post', 'laulo'), // Rename these to suit
-            'singular_name' => __('HTML5 Blank Custom Post', 'laulo'),
-            'add_new' => __('Add New', 'laulo'),
-            'add_new_item' => __('Add New HTML5 Blank Custom Post', 'laulo'),
-            'edit' => __('Edit', 'laulo'),
-            'edit_item' => __('Edit HTML5 Blank Custom Post', 'laulo'),
-            'new_item' => __('New HTML5 Blank Custom Post', 'laulo'),
-            'view' => __('View HTML5 Blank Custom Post', 'laulo'),
-            'view_item' => __('View HTML5 Blank Custom Post', 'laulo'),
-            'search_items' => __('Search HTML5 Blank Custom Post', 'laulo'),
-            'not_found' => __('No HTML5 Blank Custom Posts found', 'laulo'),
-            'not_found_in_trash' => __('No HTML5 Blank Custom Posts found in Trash', 'laulo')
-        ),
-        'public' => true,
-        'hierarchical' => true, // Allows your posts to behave like Hierarchy Pages
-        'has_archive' => true,
-        'supports' => array(
-            'title',
-            'editor',
-            'excerpt',
-            'thumbnail'
-        ), // Go to Dashboard Custom HTML5 Blank post for supports
-        'can_export' => true, // Allows export in Tools > Export
-        'taxonomies' => array(
-            'post_tag',
-            'category'
-        ) // Add Category and Post Tags support
-    ));
+    $labels = array(
+        'name' => __($plural, 'cuentica'),
+        'singular_name'  => __($singular, 'cuentica'),
+        'menu_name'  => __($plural, 'cuentica'),
+        'add_new'  => __('Add '.$singular, 'cuentica'),
+        'add_new_item'  => __('Add New '.$singular, 'cuentica'),
+        'edit'  => __('Edit', 'cuentica'),
+        'edit_item'  => __('Edit '.$singular, 'cuentica'),
+        'new_item'  => __('New '.$singular, 'cuentica'),
+        'view'  => __('View '.$singular, 'cuentica'),
+        'view_item'  => __('View '.$singular, 'cuentica'),
+        'search_items'  => __('Search '.$plural, 'cuentica'),
+        'not_found'  => __('No '.$plural.' Found', 'cuentica'),
+        'not_found_in_trash'  => __('No '.$plural.' Found in Trash', 'cuentica'),
+        'parent'  => __('Parent '.$singular, 'cuentica')
+    );
+
+    return $labels;
 }
+
+// Etiquetas taxonomia
+function getEtiquetasTaxonomia($singular, $plural)
+{
+    $labels = array(
+        'name'              => _x($plural, 'taxonomy general name', 'cuentica'),
+        'singular_name'     => _x($singular, 'taxonomy singular name', 'cuentica'),
+        'search_items'      => __('Search '.$plural, 'cuentica'),
+        'all_items'         => __('All '.$plural, 'cuentica'),
+        'parent_item'       => __('Parent '.$singular, 'cuentica'),
+        'parent_item_colon' => __('Parent '.$singular.':', 'cuentica'),
+        'edit_item'         => __('Edit '.$singular.'', 'cuentica'),
+        'update_item'       => __('Update '.$singular.'', 'cuentica'),
+        'add_new_item'      => __('Add New '.$singular.'', 'cuentica'),
+        'new_item_name'     => __('New '.$singular.' Name', 'cuentica'),
+        'menu_name'         => __($singular, 'cuentica'),
+    );
+
+    return $labels;
+}
+
+
+function registrarPostTypes($postTypes)
+{
+    if ($postTypes) {
+        foreach ($postTypes as $tipo => $valor) {
+            register_post_type($tipo, array(
+                'label' => $valor[0],
+                'public' => true,
+                'capability_type' => 'post',
+                'map_meta_cap' => true,
+                'rewrite' => array('with_front' => false),
+                'query_var' => $tipo,
+                'has_archive' => true,
+                'menu_icon' => $valor[1],
+                'supports' => array('title','thumbnail'),
+                'labels' => getEtiquetasPostType(ucfirst($tipo), $valor[0])
+            ));
+        }
+    }
+}
+
+function registrarTaxonomias($taxonomias)
+{
+    if ($taxonomias) {
+        foreach ($taxonomias as $tax => $valor) {
+            register_taxonomy($tax, $valor[1], array(
+                'hierarchical'      => true,
+                'labels'            => getEtiquetasTaxonomia(ucfirst($tax), $valor[0]),
+                'show_ui'           => true,
+                'show_admin_column' => true,
+                'query_var'         => true,
+                'rewrite'           => array( 'slug' => $tax ),
+            ));
+        }
+    }
+}
+
+function crearPostTypes()
+{
+    $postTypes = array(
+        'empresa' => array('Empresas','dashicons-groups')
+    );
+    $taxonomias = array(
+        'tipo' => array('Tipo','movimiento')
+    );
+
+    //registrarPostTypes($postTypes);
+    //registrarTaxonomias($taxonomias);
+}
+
+add_action('init', 'crearPostTypes'); // Añadir post types
+
 
 /*------------------------------------*\
 	ShortCode Functions
