@@ -1,4 +1,5 @@
 # LAULO
 
-Prantilla de wordpress de partida.
+Prantilla base de wordpress.
+
 Basada en [html5blank.com](http://html5blank.com)
