@@ -109,7 +109,8 @@ function laulo_header_scripts()
 function laulo_styles()
 {
    wp_register_style('bootstrap_css', get_template_directory_uri() . '/css/lib/bootstrap.min.css', array(), '4.0', 'all');
-   wp_register_style('laulo_css', get_template_directory_uri() . '/css/style.css', array('bootstrap_css'), '1.0', 'all');
+   wp_register_style('material_icons_font', 'https://fonts.googleapis.com/icon?family=Material+Icons', array(), '1.0', 'all');
+   wp_register_style('laulo_css', get_template_directory_uri() . '/css/style.css', array('bootstrap_css', 'material_icons_font'), '1.0', 'all');
    wp_enqueue_style('laulo_css'); // Enqueue it!
 }
 
