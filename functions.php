@@ -395,5 +395,6 @@ show_admin_bar(false);
 
 require_once( get_template_directory() . '/inc/func-custom-posts.php');
 require_once( get_template_directory() . '/inc/func-custom-meta-boxes.php');
+require_once( get_template_directory() . '/inc/func-custom-options.php');
 
 ?>
