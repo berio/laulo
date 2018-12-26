@@ -64,7 +64,7 @@ function registrarPostTypes($postTypes)
                 'query_var' => $tipo,
                 'has_archive' => true,
                 'menu_icon' => $valor[1],
-                'supports' => array('title','thumbnail'),
+                'supports' => $valor[2],
                 'labels' => getEtiquetasPostType(ucfirst($tipo), $valor[0])
             ));
         }
@@ -90,7 +90,7 @@ function registrarTaxonomias($taxonomias)
 function crearPostTypes()
 {
     $postTypes = array(
-        'empresa' => array('Empresas','dashicons-groups')
+        'empresa' => array('Empresas','dashicons-groups', array('title','thumbnail'))
     );
     $taxonomias = array(
         'tipo' => array('Tipo','movimiento')
