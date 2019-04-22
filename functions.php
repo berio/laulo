@@ -1,15 +1,11 @@
 <?php
-/*
- *  Author: Todd Motto | @toddmotto
- *  URL: html5blank.com | @html5blank
- *  Custom functions, support, custom post types and more.
- */
-
 /*------------------------------------*\
 	External Modules/Files
 \*------------------------------------*/
 
-// Load any external files you have here
+require_once( get_template_directory() . '/inc/func-custom-posts.php');
+require_once( get_template_directory() . '/inc/func-custom-meta-boxes.php');
+require_once( get_template_directory() . '/inc/func-custom-options.php');
 
 /*------------------------------------*\
 	Theme Support
@@ -430,10 +426,4 @@ function disable_emojis_remove_dns_prefetch( $urls, $relation_type ) {
    }
    return $urls;
 }
-
-// Includes
-require_once( get_template_directory() . '/inc/func-custom-posts.php');
-require_once( get_template_directory() . '/inc/func-custom-meta-boxes.php');
-require_once( get_template_directory() . '/inc/func-custom-options.php');
-
 ?>
