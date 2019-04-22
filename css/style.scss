@@ -3,6 +3,23 @@
 
 body{
    padding: 0;
+   font-family: $fonte_corpo;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+   /* en caso de que a fonte se vexa moi fina
+   -webkit-text-stroke: 0.45px;
+   // or
+   -webkit-text-stroke: 0.45px rgba(0, 0, 0, 0.1);
+   // or
+   text-shadow: #fff 0px 1px 1px;
+   */
+}
+a{
+   color: $cor_principal;
+   &:hover{
+      text-decoration:none;
+      color: $cor_principal;
+   }
 }
 
 @import 'partials/responsive';

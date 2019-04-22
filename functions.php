@@ -59,11 +59,11 @@ if (function_exists('add_theme_support'))
 \*------------------------------------*/
 
 // HTML5 Blank navigation
-function html5blank_nav()
+function html5blank_nav($theme_slug)
 {
 	wp_nav_menu(
 	array(
-		'theme_location'  => 'header-menu',
+		'theme_location'  => $theme_slug,
 		'menu'            => '',
 		'container'       => 'div',
 		'container_class' => 'menu-{menu slug}-container',
@@ -90,7 +90,7 @@ function laulo_header_scripts()
 
         wp_register_script('bootstrap_js', get_template_directory_uri() . '/js/lib/bootstrap.min.js', array(), '4.0'); // Modernizr
         wp_register_script('lauloscripts', get_template_directory_uri() . '/js/scripts.js', array('jquery', 'bootstrap_js'), '1.0.0'); // Custom scripts
-        
+
 	wp_enqueue_script('lauloscripts'); // Enqueue it!
     }
 }

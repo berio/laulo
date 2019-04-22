@@ -1,4 +1,7 @@
-<?php /* Template Name: Demo Page Template */ get_header(); ?>
+<?php
+/* Template Name: Inicio */ 
+get_header();
+?>
 
 	<main role="main">
 		<!-- section -->
