@@ -22,4 +22,15 @@ a{
    }
 }
 
+/* Wordpress hacks */
+.mejs-container{
+   margin-bottom: 20px;
+}
+.wp-caption{
+   max-width: 100%;
+   img{
+      max-width: 100%;
+      height: auto;
+   }
+}
 @import 'partials/responsive';
