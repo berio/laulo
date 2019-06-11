@@ -29,6 +29,36 @@ function laulo_register_theme_options_metabox() {
 	 * to be unique within this box.
 	 * Prefix is not needed.
 	 */
+	 /* Repeated group. Redes sociais
+	 */
+	 $prefix = '_laulo_opcions_';
+	 $group_redes = $cmb_options->add_field( array(
+		  'id'          => $prefix . 'redes',
+		  'type'        => 'group',
+		  'options'     => array(
+				'group_title'   => __( 'Red Social {#}', 'laulo' ), // {#} gets replaced by row number
+				'add_button'    => __( 'Añadir otra red', 'laulo' ),
+				'remove_button' => __( 'Quitar red', 'laulo' ),
+				'sortable'      => true, // beta
+				// 'closed'     => true, // true to have the groups closed by default
+		  ),
+	 ) );	 
+	 $cmb_options->add_group_field( $group_redes, array(
+   	'name'       => __( 'Url', 'laulo' ),
+   	'id'         => 'url',
+   	'type'       => 'text',
+		// 'repeatable' => true, // Repeatable fields are supported w/in repeatable groups (for most types)
+	)); 
+	 $cmb_options->add_group_field( $group_redes, array(
+	  'name'       => __( 'Icono', 'laulo' ),
+	  'id'         => 'icono',
+	  'type'       => 'textarea_code',
+	  'options' => array( 'disable_codemirror' => true ),
+	  'attributes'  => array(
+	  		'rows'        => 1,
+  		),
+  )); 
+
 	$cmb_options->add_field( array(
 		'name' => __( 'Test Text', 'laulo' ),
 		'desc' => __( 'field description (optional)', 'laulo' ),
