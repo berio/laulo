@@ -6,6 +6,7 @@
 require_once( get_template_directory() . '/inc/func-custom-posts.php');
 require_once( get_template_directory() . '/inc/func-custom-meta-boxes.php');
 require_once( get_template_directory() . '/inc/func-custom-options.php');
+require_once( get_template_directory() . '/inc/func-ajax.php');
 
 /*------------------------------------*\
 	Theme Support
@@ -87,11 +88,12 @@ function html5blank_nav($theme_slug)
 function laulo_header_scripts()
 {
     if ($GLOBALS['pagenow'] != 'wp-login.php' && !is_admin()) {
+      wp_register_script('bootstrap_js', get_template_directory_uri() . '/js/lib/bootstrap.min.js', array(), '4.0'); // Modernizr
 
-        wp_register_script('bootstrap_js', get_template_directory_uri() . '/js/lib/bootstrap.min.js', array(), '4.0'); // Modernizr
-        wp_register_script('lauloscripts', get_template_directory_uri() . '/js/scripts.js', array('jquery', 'bootstrap_js'), '1.0.0'); // Custom scripts
+      wp_register_script('lauloscripts', get_template_directory_uri() . '/js/scripts.js', array('jquery', 'bootstrap_js'), '1.0.0'); // Custom scripts
+      wp_enqueue_script('lauloscripts'); // Enqueue it!
+      wp_localize_script('lauloscripts', 'ajax_object', array('ajaxurl' => admin_url('admin-ajax.php'))); // Ajax
 
-	wp_enqueue_script('lauloscripts'); // Enqueue it!
     }
 }
 
