@@ -29,12 +29,12 @@
 				</a>
 
 				<nav class="nav" role="navigation">
-					<?php html5blank_nav('header-menu'); ?>
+					<?php laulo_menu('header-menu'); ?>
 				</nav>
 
 				<?php /*
 				Listado das redes socias, collidas da páxina de opcions do theme
-				*/ 
+				*/
 				$redes_sociais = laulo_get_option( '_laulo_opcions_redes' );
 				if($redes_sociais){
 					echo '<ul class="redes_sociais">';
