@@ -42,13 +42,13 @@ function laulo_register_theme_options_metabox() {
 				'sortable'      => true, // beta
 				// 'closed'     => true, // true to have the groups closed by default
 		  ),
-	 ) );	 
+	 ) );
 	 $cmb_options->add_group_field( $group_redes, array(
    	'name'       => __( 'Url', 'laulo' ),
    	'id'         => 'url',
    	'type'       => 'text',
 		// 'repeatable' => true, // Repeatable fields are supported w/in repeatable groups (for most types)
-	)); 
+	));
 	 $cmb_options->add_group_field( $group_redes, array(
 	  'name'       => __( 'Icono', 'laulo' ),
 	  'id'         => 'icono',
@@ -57,7 +57,7 @@ function laulo_register_theme_options_metabox() {
 	  'attributes'  => array(
 	  		'rows'        => 1,
   		),
-  )); 
+  ));
 
 	$cmb_options->add_field( array(
 		'name' => __( 'Test Text', 'laulo' ),
@@ -81,6 +81,17 @@ function laulo_register_theme_options_metabox() {
  * @param  mixed  $default Optional default value
  * @return mixed           Option value
  */
+/*
+ exemplo de uso:
+ $redes_sociais = laulo_get_option( '_laulo_opcions_redes' );
+ if($redes_sociais){
+ 	echo '<ul class="redes_sociais">';
+ 	foreach ($redes_sociais as $key => $rede) {
+ 		echo '<li><a href="'.$rede['url'].'">'.$rede['icono'].'</a></li>';
+ 	}
+ 	echo '</ul>';
+ }
+*/
 function laulo_get_option( $key = '', $default = false ) {
 	if ( function_exists( 'cmb2_get_option' ) ) {
 		// Use cmb2_get_option as it passes through some key filters.
