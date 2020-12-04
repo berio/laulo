@@ -63,6 +63,7 @@ function registrarPostTypes($postTypes)
                 'rewrite' => array('with_front' => false),
                 'query_var' => $tipo,
                 'has_archive' => true,
+                'show_in_rest' => true, // para facer que apareza no Gutemberg
                 'menu_icon' => $valor[1],
                 'supports' => $valor[2],
                 'labels' => getEtiquetasPostType(ucfirst($tipo), $valor[0])
@@ -81,6 +82,7 @@ function registrarTaxonomias($taxonomias)
                 'show_ui'           => true,
                 'show_admin_column' => true,
                 'query_var'         => true,
+                'show_in_rest'      => true, // para facer que apareza no Gutemberg
                 'rewrite'           => array( 'slug' => $tax ),
             ));
         }
