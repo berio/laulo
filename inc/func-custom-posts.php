@@ -11,20 +11,20 @@
 function getEtiquetasPostType($singular, $plural)
 {
     $labels = array(
-        'name' => __($plural, 'cuentica'),
-        'singular_name'  => __($singular, 'cuentica'),
-        'menu_name'  => __($plural, 'cuentica'),
-        'add_new'  => __('Add '.$singular, 'cuentica'),
-        'add_new_item'  => __('Add New '.$singular, 'cuentica'),
-        'edit'  => __('Edit', 'cuentica'),
-        'edit_item'  => __('Edit '.$singular, 'cuentica'),
-        'new_item'  => __('New '.$singular, 'cuentica'),
-        'view'  => __('View '.$singular, 'cuentica'),
-        'view_item'  => __('View '.$singular, 'cuentica'),
-        'search_items'  => __('Search '.$plural, 'cuentica'),
-        'not_found'  => __('No '.$plural.' Found', 'cuentica'),
-        'not_found_in_trash'  => __('No '.$plural.' Found in Trash', 'cuentica'),
-        'parent'  => __('Parent '.$singular, 'cuentica')
+        'name' => __($plural, 'laulo'),
+        'singular_name'  => __($singular, 'laulo'),
+        'menu_name'  => __($plural, 'laulo'),
+        'add_new'  => __('Add '.$singular, 'laulo'),
+        'add_new_item'  => __('Add New '.$singular, 'laulo'),
+        'edit'  => __('Edit', 'laulo'),
+        'edit_item'  => __('Edit '.$singular, 'laulo'),
+        'new_item'  => __('New '.$singular, 'laulo'),
+        'view'  => __('View '.$singular, 'laulo'),
+        'view_item'  => __('View '.$singular, 'laulo'),
+        'search_items'  => __('Search '.$plural, 'laulo'),
+        'not_found'  => __('No '.$plural.' Found', 'laulo'),
+        'not_found_in_trash'  => __('No '.$plural.' Found in Trash', 'laulo'),
+        'parent'  => __('Parent '.$singular, 'laulo')
     );
 
     return $labels;
@@ -34,17 +34,17 @@ function getEtiquetasPostType($singular, $plural)
 function getEtiquetasTaxonomia($singular, $plural)
 {
     $labels = array(
-        'name'              => _x($plural, 'taxonomy general name', 'cuentica'),
-        'singular_name'     => _x($singular, 'taxonomy singular name', 'cuentica'),
-        'search_items'      => __('Search '.$plural, 'cuentica'),
-        'all_items'         => __('All '.$plural, 'cuentica'),
-        'parent_item'       => __('Parent '.$singular, 'cuentica'),
-        'parent_item_colon' => __('Parent '.$singular.':', 'cuentica'),
-        'edit_item'         => __('Edit '.$singular.'', 'cuentica'),
-        'update_item'       => __('Update '.$singular.'', 'cuentica'),
-        'add_new_item'      => __('Add New '.$singular.'', 'cuentica'),
-        'new_item_name'     => __('New '.$singular.' Name', 'cuentica'),
-        'menu_name'         => __($singular, 'cuentica'),
+        'name'              => _x($plural, 'taxonomy general name', 'laulo'),
+        'singular_name'     => _x($singular, 'taxonomy singular name', 'laulo'),
+        'search_items'      => __('Search '.$plural, 'laulo'),
+        'all_items'         => __('All '.$plural, 'laulo'),
+        'parent_item'       => __('Parent '.$singular, 'laulo'),
+        'parent_item_colon' => __('Parent '.$singular.':', 'laulo'),
+        'edit_item'         => __('Edit '.$singular.'', 'laulo'),
+        'update_item'       => __('Update '.$singular.'', 'laulo'),
+        'add_new_item'      => __('Add New '.$singular.'', 'laulo'),
+        'new_item_name'     => __('New '.$singular.' Name', 'laulo'),
+        'menu_name'         => __($singular, 'laulo'),
     );
 
     return $labels;
