@@ -6,18 +6,19 @@
 add_action( 'cmb2_admin_init', 'laulo_register_metabox' );
 
 function laulo_register_metabox() {
-    $prefix_arquivo = 'arquivo_';
+    $prefix_inicio = 'inicio_';
 
     // Arquivo
-    $cmb_arquivo = new_cmb2_box( array(
-		'id'            => $prefix_arquivo . 'metabox',
-		'title'         => esc_html__( 'Info arquivo', 'cmb2' ),
-		'object_types'  => array( 'arquivo' ), // Post type
+    $cmb_inicio = new_cmb2_box( array(
+		'id'            => $prefix_inicio . 'metabox',
+		'title'         => esc_html__( 'Info inicio', 'cmb2' ),
+		'object_types'  => array( 'page' ), // Post type
+    'show_on'       => array( 'key' => 'page-template', 'value' => 'templates/template-inicio.php' ), // aplicar só na páxina de inicio
 	) );
 
-    $cmb_arquivo->add_field( array(
-		'name'       => esc_html__( 'Id Minerva', 'cmb2' ),
-		'id'         => $prefix_arquivo . 'id_minerva',
+    $cmb_inicio->add_field( array(
+		'name'       => esc_html__( 'Texto inicio', 'cmb2' ),
+		'id'         => $prefix_inicio . 'texto_inicio',
 		'type'       => 'text',
 	) );
 }
