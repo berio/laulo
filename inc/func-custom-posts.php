@@ -55,19 +55,20 @@ function registrarPostTypes($postTypes)
 {
     if ($postTypes) {
         foreach ($postTypes as $tipo => $valor) {
-            register_post_type($tipo, array(
-                'label' => $valor[0],
-                'public' => true,
-                'capability_type' => 'post',
-                'map_meta_cap' => true,
-                'rewrite' => array('with_front' => false),
-                'query_var' => $tipo,
-                'has_archive' => true,
-                'show_in_rest' => true, // para facer que apareza no Gutemberg
-                'menu_icon' => $valor[1],
-                'supports' => $valor[2],
-                'labels' => getEtiquetasPostType(ucfirst($tipo), $valor[0])
-            ));
+          register_post_type($tipo, array(
+              'label'           => $valor[0],
+              'public'          => true,
+              'capability_type' => 'post',
+              'map_meta_cap'    => true,
+              'rewrite'         => array('with_front' => false),
+              'query_var'       => $tipo,
+              'has_archive'     => true,
+              'show_in_rest'    => true, // para facer que apareza no Gutemberg
+              'menu_icon'       => $valor[1],
+              'menu_position'   => 4,
+              'supports'        => $valor[2],
+              'labels'          => getEtiquetasPostType(ucfirst($tipo), $valor[0])
+          ));
         }
     }
 }
